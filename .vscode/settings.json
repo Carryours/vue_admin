@@ -1,0 +1,83 @@
+{
+    /*************************************************************************
+     *******************常用配置**************************************
+     *************************************************************************/
+    "editor.fontSize": 14,
+    "files.associations": {
+        "*.ts": [
+            "typescript"
+        ],
+        "*.tsx": "javascriptreact",
+        "*.js": [
+            "javascriptreact",
+            "html"
+        ]
+    },
+
+    /*************************************************************************
+     *******************文本编辑器**************************************
+     *************************************************************************/
+    "editor.formatOnSave": true, // 保存后自动格式化
+    "javascript.autoClosingTags": false,
+
+    /*************************************************************************
+     *******************工作台**************************************
+     *************************************************************************/
+    "workbench.colorCustomizations": {},
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.view.alwaysShowHeaderActions": true,
+
+    /*************************************************************************
+     *******************扩展**************************************
+     *************************************************************************/
+    "gulp.autoDetect": "off", // gulp 
+    "auto-close-tag.activationOnLanguage": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "markdown",
+        "vue",
+        "HTML (Eex)"
+    ],
+    "auto-close-tag.excludedTags": [
+        "router-view",
+        "area",
+        "br",
+        "hr",
+        "img",
+        "input",
+        "link",
+        "meta",
+    ],
+    "autoimport.doubleQuotes": true,
+    "beautify.language": {
+        "js": {
+            "type": [
+                "typescript",
+                "javascript",
+                "json",
+                "jsonc"
+            ],
+            "filename": [
+                ".jshintrc",
+                ".jsbeautifyrc"
+            ]
+        },
+        "css": [
+            "css",
+            "less",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html"
+        ]
+    },
+    // 拼写检查
+    "cSpell.allowCompoundWords": true, // 允许合成词
+    "cSpell.words": [
+        "Avenir",
+        "styl",
+    ]
+}
