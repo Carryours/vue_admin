@@ -6,7 +6,7 @@ import './app.less'
 export default class App extends Vue {
     render() {
         return (
-            <div id="app">
+            <div class="app-main">
                 <router-view />
             </div>
         )

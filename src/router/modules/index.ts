@@ -1,25 +1,31 @@
-
-import Router, { RouteConfig } from 'vue-router'
+import Router, {
+    RouteConfig
+} from 'vue-router'
 
 type RequireContext = __WebpackModuleApi.RequireContext
 
 type PageRouteConfig = Page.PageRouteConfig
 
-import { isPlainObject, isFun } from '@/libs'
+import {
+    isPlainObject,
+    isFun
+} from '@/libs'
 
 
 
 export enum ModulesKey {
-    Login = "login",
+    Login = "login", Layout = 'main',
 }
 
-const routeConfigsMap: { [key: string]: Array<RouteConfig> } = {}
+const routeConfigsMap: {
+    [key: string]: Array < RouteConfig >
+} = {}
 
 
 /**
  * 根据key值获取路由列表
  */
-export function getRoutesBykey(key: ModulesKey): Array<RouteConfig> | undefined {
+export function getRoutesBykey(key: ModulesKey): Array < RouteConfig > {
     let value = routeConfigsMap[key]
     if (value) return value
 
@@ -29,21 +35,37 @@ export function getRoutesBykey(key: ModulesKey): Array<RouteConfig> | undefined 
             routeConfigsMap[key] = list
             return list
         }
+        case ModulesKey.Layout: {
+            let list = getLayoutRoutes()
+            routeConfigsMap[key] = list
+            return list
+        }
     }
+    return []
 }
 
+
+function getLayoutRoutes(): RouteConfig[] {
+    let route = require('@/layout/route').default
+    let list: RouteConfig[] = [
+        Object.assign({}, route, {
+            path: `/${ModulesKey.Layout}`
+        })
+    ]
+    return list
+}
 
 /**
  * 获取登入的路由
  */
-function getLoginRoutes(): Array<RouteConfig> {
+function getLoginRoutes(): Array < RouteConfig > {
     const context: RequireContext = require.context('@/modules/login', true, /\/route.ts$/)
     return parseContext(context, ModulesKey.Login)
 }
 
 function parseContext(context: RequireContext, moduleKey: ModulesKey) {
     let keys = context.keys()
-    let list: Array<RouteConfig> = []
+    let list: Array < RouteConfig > = []
     keys.forEach(key => {
         let routes = context(key).default
 
@@ -52,7 +74,7 @@ function parseContext(context: RequireContext, moduleKey: ModulesKey) {
         } else if (!Array.isArray(routes)) {
             throw new Error(routes)
         }
-        let pathBlocks: string[] = key.split('/')   // 路径块列表
+        let pathBlocks: string[] = key.split('/') // 路径块列表
         pathBlocks.shift()
         pathBlocks.pop()
         if (pathBlocks.length === 0) return

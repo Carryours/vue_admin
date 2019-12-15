@@ -1,12 +1,20 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
 
+import { CreateElement } from 'vue'
 
+import LayoutHeader from './components/layoutHeader'
+import LayoutFooter from "./components/layoutFooter/index";
+import LayoutContent from './components/layoutContent';
+
+import './index.styl'
 @Component
 export default class Layout extends Vue {
 
-    render() {
-        return <div id="app">
-            <img alt="Vue logo" src={require('./assets/logo.png')} />
+    render(h: CreateElement) {
+        return <div class='layout'>
+            <LayoutHeader></LayoutHeader>
+            <LayoutContent></LayoutContent>
+            <LayoutFooter></LayoutFooter>
         </div>
     }
 }

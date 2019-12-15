@@ -11,6 +11,7 @@ export default class Login extends Vue {
         return (
             <div>
                 <h1>登入</h1>
+                <img alt="Vue logo" src={require('@/assets/logo.png')} />
                 <div>32323</div>
                 <h1>"324234" </h1>
             </div>

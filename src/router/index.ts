@@ -1,18 +1,26 @@
 import Vue from 'vue'
-import VueRouter, { RouterOptions, RouteConfig } from 'vue-router'
-import { getRoutesBykey, ModulesKey } from './modules'
+import VueRouter, {
+  RouterOptions,
+  RouteConfig
+} from 'vue-router'
+import {
+  getRoutesBykey,
+  ModulesKey
+} from './modules'
 
 
 Vue.use(VueRouter)
 
 const loginRoutes = getRoutesBykey(ModulesKey.Login)
 
-console.log(loginRoutes)
 
 
 
 const options: RouterOptions = {
-  routes: loginRoutes
+  routes: [
+    ...loginRoutes,
+    ...getRoutesBykey(ModulesKey.Layout)
+  ]
 }
 const router = new VueRouter(options)
 
