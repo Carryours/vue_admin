@@ -14,7 +14,7 @@ import {
 
 
 export enum ModulesKey {
-    Login = "login", Layout = 'main',
+    Login = "login", Layout = 'main', Sys = 'sys',
 }
 
 const routeConfigsMap: {
@@ -25,7 +25,7 @@ const routeConfigsMap: {
 /**
  * 根据key值获取路由列表
  */
-export function getRoutesBykey(key: ModulesKey): Array < RouteConfig > {
+export function getRoutesByKey(key: ModulesKey): Array < RouteConfig > {
     let value = routeConfigsMap[key]
     if (value) return value
 
@@ -37,6 +37,11 @@ export function getRoutesBykey(key: ModulesKey): Array < RouteConfig > {
         }
         case ModulesKey.Layout: {
             let list = getLayoutRoutes()
+            routeConfigsMap[key] = list
+            return list
+        }
+        case ModulesKey.Sys: {
+            let list = getSysRoutes()
             routeConfigsMap[key] = list
             return list
         }
@@ -56,14 +61,20 @@ function getLayoutRoutes(): RouteConfig[] {
 }
 
 /**
- * 获取登入的路由
+ * 获取登入模块的路由
  */
 function getLoginRoutes(): Array < RouteConfig > {
     const context: RequireContext = require.context('@/modules/login', true, /\/route.ts$/)
     return parseContext(context, ModulesKey.Login)
 }
 
-function parseContext(context: RequireContext, moduleKey: ModulesKey) {
+
+function getSysRoutes(): Array < RouteConfig > {
+    const context: RequireContext = require.context('@/modules/sys', true, /\/route.ts$/)
+    return parseContext(context, ModulesKey.Sys, false)
+}
+
+function parseContext(context: RequireContext, moduleKey: ModulesKey, slash: Boolean = true) {
     let keys = context.keys()
     let list: Array < RouteConfig > = []
     keys.forEach(key => {
@@ -83,7 +94,7 @@ function parseContext(context: RequireContext, moduleKey: ModulesKey) {
             meta.moduleKey = moduleKey
             meta.pathBlocks = pathBlocks
 
-            let path = `/${moduleKey}/${pathBlocks.join('/')}`
+            let path = `${slash?'/': ''}${moduleKey}/${pathBlocks.join('/')}`
 
             let copy: RouteConfig = Object.assign({}, route, {
                 path,

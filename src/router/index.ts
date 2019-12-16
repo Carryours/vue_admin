@@ -1,30 +1,33 @@
 import Vue from 'vue'
 import VueRouter, {
   RouterOptions,
-  RouteConfig
 } from 'vue-router'
 import {
-  getRoutesBykey,
+  getRoutesByKey,
   ModulesKey
 } from './modules'
 
 
 Vue.use(VueRouter)
 
-const loginRoutes = getRoutesBykey(ModulesKey.Login)
-
-
-
+// const loginRoutes = getRoutesByKey(ModulesKey.Login)
+const mainRoute = getRoutesByKey(ModulesKey.Layout)[0]
+mainRoute.children = getRoutesByKey(ModulesKey.Sys)
+console.log(mainRoute);
 
 const options: RouterOptions = {
   routes: [
-    ...loginRoutes,
-    ...getRoutesBykey(ModulesKey.Layout)
+    ...getRoutesByKey(ModulesKey.Login),
+    mainRoute,
   ]
 }
 const router = new VueRouter(options)
 
+router.beforeEach((from, to, next) => {
+  console.log(to);
 
+  next()
+})
 router.onReady(() => {
   console.log('路由准备就绪')
 }, err => {
