@@ -1,17 +1,15 @@
-@import 'variable/global.styl'
 html
+  	text-rendering: optimizeLegibility
 	-webkit-text-size-adjust none
 	-webkit-font-smoothing antialiased
 	-ms-text-size-adjust 100%
 	
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, textarea, p, th, td, hr, button, article, aside, figure, footer, header, menu, nav, section
 	margin 0
 	padding 0
 	outline 0
-div
 	box-sizing border-box
-	&.content-box
-		box-sizing content-box
+
 body, html
 	height 100%
 	background-color #fff
@@ -23,7 +21,7 @@ body
 	user-select none
 	font-size 14px
 	line-height 1.6
-	font-family $fontDefault
+	font-family Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 img, svg, input, textarea
 	vertical-align middle
 a img

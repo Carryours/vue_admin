@@ -14,5 +14,14 @@ module.exports = {
       // .set('element-ui', resolve('src/element'))
       .end()
 
+  },
+  css: {
+    loaderOptions: {
+      stylus: {
+        import: [
+          resolve("src/styles/variable/index.styl")
+        ],
+      }
+    }
   }
 }
