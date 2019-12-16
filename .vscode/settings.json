@@ -80,7 +80,10 @@
     "cSpell.allowCompoundWords": true, // 允许合成词
     "cSpell.words": [
         "Avenir",
-        "styl",
+        "Cascader",
+        "antd",
+        "rogen",
+        "styl"
     ],
 
 }

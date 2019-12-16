@@ -1,8 +1,6 @@
 const mainRoute: Page.PageRouteConfig = {
     component: () => import( /* webpackChunkName: "setting" */ './index'),
-    meta: {
-
-    }
+    meta: {}
 }
 
 

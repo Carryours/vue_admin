@@ -19,9 +19,10 @@ declare global {
     interface PageRouteConfig {
       path ? : string,
         name ? : string,
-
         component: ComponentOptions < Vue > | typeof Vue | AsyncComponent,
-        meta ? : any
+        meta: {
+          [key: string]: any,
+        }
     }
   }
 }

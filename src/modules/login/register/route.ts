@@ -1,6 +1,7 @@
 const mainRoute: Page.PageRouteConfig = {
     component: () => import( /* webpackChunkName: "register" */ './index'),
     // key: 'login',
+    meta: {}
 }
 
 

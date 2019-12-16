@@ -17,6 +17,10 @@ module.exports = {
   },
   css: {
     loaderOptions: {
+      less: {
+        javascriptEnabled: true
+
+      },
       stylus: {
         import: [
           resolve("src/styles/variable/index.styl")

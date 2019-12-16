@@ -1,31 +1,40 @@
 import Vue from 'vue'
 import VueRouter, {
-  RouterOptions,
+  RouteConfig
 } from 'vue-router'
-import {
-  getRoutesByKey,
-  ModulesKey
-} from './modules'
 
+
+import '@/modules/route'
+
+
+import routesMap from '@/modules/route'
+import mainRoute from '@/layout/route'
 
 Vue.use(VueRouter)
 
-// const loginRoutes = getRoutesByKey(ModulesKey.Login)
-const mainRoute = getRoutesByKey(ModulesKey.Layout)[0]
-mainRoute.children = getRoutesByKey(ModulesKey.Sys)
-console.log(mainRoute);
 
-const options: RouterOptions = {
+mainRoute.children = [
+  ...routesMap['sys'],
+  ...routesMap['demo'],
+]
+
+
+let loginRoutes: RouteConfig[] = routesMap['login'].map(route => {
+  route.path = `/${route.path}`
+  return route
+})
+const options = {
   routes: [
-    ...getRoutesByKey(ModulesKey.Login),
+    ...loginRoutes,
     mainRoute,
   ]
 }
+console.log(mainRoute);
+
 const router = new VueRouter(options)
 
 router.beforeEach((from, to, next) => {
   console.log(to);
-
   next()
 })
 router.onReady(() => {
