@@ -1,7 +1,7 @@
 import Button from './button';
 import ButtonGroup from './button-group';
 import Base from '../base';
-import './style'
+import './style'    // 引入样式
 Button.Group = ButtonGroup;
 
 /* istanbul ignore next */
