@@ -6,7 +6,9 @@ import './index.styl'
 export default class LayoutContent extends Vue {
     render() {
         return <div class='layout-content'>
-            <router-view />
+            <div>
+                <router-view />
+            </div>
         </div>
     }
 }
