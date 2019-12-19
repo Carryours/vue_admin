@@ -1,8 +1,9 @@
 import classNames from 'classnames';
-// import * as allIcons from '@ant-design/icons/lib/dist';
+import * as allIcons from '@ant-design/icons-svg/lib/dist';
 import VueIcon from '@ant-design/icons-vue';
 import PropTypes from '../_util/vue-types';
 import createFromIconfontCN from './IconFont';
+import './style/index'
 import {
   svgBaseProps,
   withThemeSuffix,
@@ -17,7 +18,7 @@ import { filterEmpty, getClass } from '../_util/props-util';
 import Base from '../base';
 
 // Initial setting
-// VueIcon.add(...Object.keys(allIcons).map(key => allIcons[key]));
+VueIcon.add(...Object.keys(allIcons).map(key => allIcons[key]));
 setTwoToneColor('#1890ff');
 const defaultTheme = 'outlined';
 let dangerousTheme;
