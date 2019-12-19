@@ -1,5 +1,5 @@
 const mainRoute: Page.PageRouteConfig = {
-    component: () => import( /* webpackChunkName: "home" */ './index'),
+    component: () => import( /* webpackChunkName: "sys/home" */ './index'),
     meta: {}
 }
 

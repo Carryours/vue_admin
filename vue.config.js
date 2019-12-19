@@ -1,19 +1,18 @@
-
-const path = require('path')
+const path = require("path");
 
 const resolve = dir => {
-  return path.join(__dirname, dir)
-}
-
+  return path.join(__dirname, dir);
+};
+const isPro = process.env.NODE_ENV === "production";
 module.exports = {
-  publicPath: '',
+  publicPath: "",
+  runtimeCompiler: isPro,
   chainWebpack: config => {
     config.resolve.alias
-      .set('@', resolve('src'))
-      // .set('_c', resolve('src/components'))
+      .set("@", resolve("src"))
+      // .set('@a', resolve('src/ui/antd/components'))
       // .set('element-ui', resolve('src/element'))
-      .end()
-
+      .end();
   },
   css: {
     loaderOptions: {
@@ -32,18 +31,15 @@ module.exports = {
           // @border-radius-base: 4px; // 组件/浮层圆角
           // @border-color-base: #d9d9d9; // 边框色
           // @box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
-          'primary-color': '#F56515',
+          "primary-color": "#F56515",
           // 'link-color': '#1DA57A',
-          'border-radius-base': '2px',
+          "border-radius-base": "2px"
         },
         javascriptEnabled: true
-
       },
       stylus: {
-        import: [
-          resolve("src/styles/variable/index.styl")
-        ],
+        import: [resolve("src/styles/variable/index.styl")]
       }
     }
   }
-}
+};

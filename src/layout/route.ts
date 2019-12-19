@@ -2,7 +2,7 @@ import {
     RouteConfig
 } from 'vue-router'
 
-export const component = () => import( /* webpackChunkName: "layout" */ './index')
+export const component = () => import( /* webpackChunkName: "common/layout" */ './index')
 
 const mainRoute: RouteConfig = {
     path: '/main',

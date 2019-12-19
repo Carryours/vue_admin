@@ -24,7 +24,10 @@ let loginRoutes: RouteConfig[] = routesMap['login'].map(route => {
   return route
 })
 const options = {
-  routes: [
+  routes: [{
+      path: '/',
+      redirect: '/main/sys/home'
+    },
     ...loginRoutes,
     mainRoute,
   ]

@@ -2,8 +2,17 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 import '@/styles/index.styl'
-import './ui/antd/components/index_rogen.js'
 import App from './App/index'
+
+// import './ui/antd/components/index_rogen.js'
+
+import {
+  Icon,
+  Button
+} from 'ant-design-vue'
+Vue.use(Icon)
+Vue.use(Button)
+
 
 
 Vue.config.productionTip = false
