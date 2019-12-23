@@ -9208,6 +9208,11 @@ retry@^0.12.0:
   resolved "https://registry.npm.taobao.org/retry/download/retry-0.12.0.tgz#1b42a6266a21f07421d1b0b54b7dc167b01c013b"
   integrity sha1-G0KmJmoh8HQh0bC1S33BZ7AcATs=
 
+rg-util@^1.0.2:
+  version "1.0.2"
+  resolved "http://localhost:4873/rg-util/-/rg-util-1.0.2.tgz#7a34070bb70fb1a4be2dc6d9ace7c9e06a3c751a"
+  integrity sha512-kgzmbyXIzPTZJY0D4kU57t9apjvFsLTnAQJKNrPLybOixiymfL7ltNaoJ8HQKIlCHZMvQa0jUyf1Pp9t2q6AlA==
+
 rgb-regex@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/rgb-regex/download/rgb-regex-1.0.1.tgz#c0e0d6882df0e23be254a475e8edd41915feaeb1"
