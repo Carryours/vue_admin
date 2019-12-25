@@ -41,12 +41,12 @@ export default class Msg extends Vue {
 
         <a-button
           onClick={() => {
-            this.$message
-              .loading("Action in progress..", 2.5)
-              .then(() => this.$message.success("Loading finished", 2))
-              .then(() =>
-                this.$message.info("Loading finished is finished", 3)
-              );
+            // this.$message
+            //   .loading("Action in progress..", 2.5)
+            //   .then(() => this.$message.success("Loading finished", 2))
+            //   .then(() =>
+            //     this.$message.info("Loading finished is finished", 3)
+            //   );
           }}
         >
           Display a sequence of message

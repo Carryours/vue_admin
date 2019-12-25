@@ -13,15 +13,17 @@ export default class ModalDemo extends Vue {
   private confirmLoading = false;
   private mList: VNode[] = [];
   private mMap: { [key: string]: VNode } = {};
-  // private rgM: VNode ;
+  private v: boolean = false;
   private showRgModal() {
     let a = this.mMap.a;
     if (!a) {
-      this.mMap.a = this.$createElement(RgModal);
-      this.mList.push(this.mMap.a);
+      a = this.mMap.a = this.$createElement(RgModal, { props: { v: this.v } });
+      this.mList.push(a);
     } else {
-      a.componentInstance && a.componentInstance.show();
+      let c = a.componentInstance;
+      c && c.show && c.show();
     }
+    // this.v = true;
   }
   render(h: typeof Vue.prototype.$createElement) {
     return (
@@ -39,6 +41,7 @@ export default class ModalDemo extends Vue {
               this.confirmLoading = false;
             }, 2000);
           }}
+          onCancel={() => (this.visible = false)}
           confirmLoading={this.confirmLoading}
         >
           <p>{"Content of the modal"}</p>
