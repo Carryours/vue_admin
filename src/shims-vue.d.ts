@@ -6,7 +6,6 @@ import {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    [x: string]: any
     $axios: AxiosInstance
     $utils: object
   }

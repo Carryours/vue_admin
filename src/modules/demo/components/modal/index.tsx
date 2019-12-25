@@ -1,12 +1,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Modal } from "ant-design-vue";
-
-declare module "vue/types/vue" {
-  interface Vue {
-    confirmLoading: Boolean;
-    visible: Boolean;
-  }
-}
+import RgModal from "./components/RgModal";
+import { VNode } from "vue/types/umd";
 
 @Component({
   components: {
@@ -14,11 +9,19 @@ declare module "vue/types/vue" {
   }
 })
 export default class ModalDemo extends Vue {
-  data() {
-    return {
-      visible: false,
-      confirmLoading: false
-    };
+  private visible = false;
+  private confirmLoading = false;
+  private mList: VNode[] = [];
+  private mMap: { [key: string]: VNode } = {};
+  // private rgM: VNode ;
+  private showRgModal() {
+    let a = this.mMap.a;
+    if (!a) {
+      this.mMap.a = this.$createElement(RgModal);
+      this.mList.push(this.mMap.a);
+    } else {
+      a.componentInstance && a.componentInstance.show();
+    }
   }
   render(h: typeof Vue.prototype.$createElement) {
     return (
@@ -58,6 +61,9 @@ export default class ModalDemo extends Vue {
         >
           Confirm
         </a-button>
+
+        <a-button onClick={this.showRgModal}>rogen </a-button>
+        {this.mList}
       </div>
     );
   }

@@ -9,17 +9,21 @@ import { Button, Icon } from "ant-design-vue";
   }
 })
 export default class Btn extends Vue {
-  data() {
-    return {
-      size: "small"
-    };
-  }
+  private size = "small";
+  private test = "案例1";
 
   render() {
     return (
       <div>
         <div>
-          <a-button type="primary">Primary</a-button>
+          <a-button
+            type="primary"
+            onClick={() => {
+              this.test = "rogen";
+            }}
+          >
+            {this.test}
+          </a-button>
           <a-button>Default</a-button>
           <a-button type="dashed">Dashed</a-button>
           <a-button type="danger">Danger</a-button>
