@@ -12,11 +12,16 @@ import mainRoute from '@/layout/route'
 
 Vue.use(VueRouter)
 
+console.log(routesMap)
 
 mainRoute.children = [
-  ...routesMap['sys'],
-  ...routesMap['demo'],
+  // ...routesMap['sys'],
+  // ...routesMap['demo'],
 ]
+for (let mKey in routesMap) {
+  if (mKey === 'login') continue
+  mainRoute.children = mainRoute.children.concat(routesMap[mKey])
+}
 
 
 let loginRoutes: RouteConfig[] = routesMap['login'].map(route => {

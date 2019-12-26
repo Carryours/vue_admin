@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
+    "dll": "node build/dll.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build_nc": "vue-cli-service build --no-clean",
     "lint": "vue-cli-service lint",
+    "bl": "browserslist",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -43,6 +46,7 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "typescript": "~3.5.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack-cli": "^3.3.10"
   }
 }

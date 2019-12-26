@@ -1,18 +1,64 @@
 const path = require("path");
-
+const webpack = require("webpack");
 const resolve = dir => {
   return path.join(__dirname, dir);
 };
 const isPro = process.env.NODE_ENV === "production";
 module.exports = {
   publicPath: "",
+  assetsDir: "appAsserts",
+  productionSourceMap: false,
+  // outputDir: "dist/app",
   runtimeCompiler: isPro,
+  // configureWebpack: {
+  //   plugins: [
+  //     new webpack.DllReferencePlugin({
+  //       context: __dirname,
+  //       manifest: require("./dist/vue.manifest.json")
+  //     })
+  //   ]
+  // },
   chainWebpack: config => {
     config.resolve.alias
+      .delete("vue$")
       .set("@", resolve("src"))
       // .set('@a', resolve('src/ui/antd/components'))
       // .set('element-ui', resolve('src/element'))
       .end();
+
+    //////////////////////////
+    config
+      .plugin("dll-reference-plugin")
+      .use(webpack.DllReferencePlugin)
+      .tap(options => {
+        options[0] = {
+          context: __dirname,
+          manifest: require(path.join(
+            __dirname,
+            `./public/dll_vender/vendor.manifest.json`
+          ))
+        };
+        return options;
+      })
+      .end();
+
+    ///////////////////////
+    config
+      .externals({
+        vue: "Vue"
+      })
+      .end();
+    //  分离runtime
+    // config
+    //   .plugin("ScriptExtHtmlWebpackPlugin")
+    //   .after("html")
+    //   .use("script-ext-html-webpack-plugin", [
+    //     {
+    //       // `runtime` must same as runtimeChunk name. default is `runtime`
+    //       inline: /runtime\..*\.js$/
+    //     }
+    //   ]);
+    config.optimization.minimize(false).runtimeChunk("single");
   },
   css: {
     loaderOptions: {

@@ -30,9 +30,9 @@ export default class Msg extends Vue {
           onClick={() => {
             // 输入的是0, 就需要手动关闭
             const hide = this.$message.loading("Action in progress..", 0);
-            setTimeout(() => {
-              if (typeof hide === "function") hide();
-            }, 2000);
+            // setTimeout(() => {
+            //   if (typeof hide === "function") hide();
+            // }, 2000);
             // setTimeout(hide, 2500);
           }}
         >
