@@ -1,64 +1,114 @@
 const path = require("path");
 const webpack = require("webpack");
+
 const resolve = dir => {
   return path.join(__dirname, dir);
 };
+
+const isDev = process.env.NODE_ENV === "development";
 const isPro = process.env.NODE_ENV === "production";
 module.exports = {
-  publicPath: "",
-  assetsDir: "appAsserts",
+  publicPath: "", // 使用相对路径
+  assetsDir: "assets",
   productionSourceMap: false,
-  // outputDir: "dist/app",
   runtimeCompiler: isPro,
-  // configureWebpack: {
-  //   plugins: [
-  //     new webpack.DllReferencePlugin({
-  //       context: __dirname,
-  //       manifest: require("./dist/vue.manifest.json")
-  //     })
-  //   ]
-  // },
+  lintOnSave: isDev,
   chainWebpack: config => {
+    config.plugins.delete("preload"); // TODO: need test
+    config.plugins.delete("prefetch"); // TODO: need test
+
     config.resolve.alias
-      .delete("vue$")
+      // .delete("vue$")
       .set("@", resolve("src"))
       // .set('@a', resolve('src/ui/antd/components'))
-      // .set('element-ui', resolve('src/element'))
       .end();
+    ///////////////////////////////////////////////
+    /////开发配置//////////////////////////
+    ///////////////////////////////////////////////
+    if (isDev) {
+      config.optimization.splitChunks({}).end();
+    }
+    //////////////////////////////////////////////////////////
+    //////**********生产配置 */
+    //////////////////////////////////////////////////////////
+    if (isPro) {
+      ///////////////////////
+      config
+        .externals({
+          vue: "Vue"
+        })
+        .end();
+      //////////////////////////
+      config // 使用dll
+        .plugin("dll-reference-plugin")
+        .use(webpack.DllReferencePlugin)
+        .tap(options => {
+          options[0] = {
+            context: __dirname,
+            manifest: require(path.join(
+              __dirname,
+              `./public/dll_vender/vendor.manifest.json`
+            ))
+          };
+          return options;
+        })
+        .end();
+      config
+        .plugin("html")
+        .tap(args => {
+          let arg = args[0];
+          // 自定义script标签
+          arg.costomScripts = [
+            { src: "vue/vue.runtime.min.js" },
+            { src: "dll_vender/vendor.dll.d38023ff.js" }
+          ];
+          // ars.meta = {
+          //   // viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
+          // };
+          arg.minify = false;
+          return args;
+        })
+        .end();
+      config
+        .plugin("ScriptExtHtmlWebpackPlugin")
+        .after("html")
+        .use("script-ext-html-webpack-plugin", [
+          {
+            // `runtime` must same as runtimeChunk name. default is `runtime`
+            inline: /runtime\..*\.js$/
+          }
+        ]);
 
-    //////////////////////////
-    config
-      .plugin("dll-reference-plugin")
-      .use(webpack.DllReferencePlugin)
-      .tap(options => {
-        options[0] = {
-          context: __dirname,
-          manifest: require(path.join(
-            __dirname,
-            `./public/dll_vender/vendor.manifest.json`
-          ))
-        };
-        return options;
-      })
-      .end();
-
-    ///////////////////////
-    config
-      .externals({
-        vue: "Vue"
-      })
-      .end();
-    //  分离runtime
-    // config
-    //   .plugin("ScriptExtHtmlWebpackPlugin")
-    //   .after("html")
-    //   .use("script-ext-html-webpack-plugin", [
-    //     {
-    //       // `runtime` must same as runtimeChunk name. default is `runtime`
-    //       inline: /runtime\..*\.js$/
-    //     }
-    //   ]);
-    config.optimization.minimize(false).runtimeChunk("single");
+      config.optimization
+        .splitChunks({
+          chunks: "all",
+          cacheGroups: {
+            vendors: {
+              name: "chunks/node_modules-vendors",
+              test: /[\\/]node_modules[\\/]/,
+              priority: -10,
+              chunks: "initial"
+            },
+            // common: {
+            //   name: "chunk-common",
+            //   minChunks: 2,
+            //   priority: -20,
+            //   chunks: "initial",
+            //   reuseExistingChunk: true
+            // },
+            componentCommons: {
+              name: "chunks/component-commons",
+              test: resolve("src/components"), // can customize your rules
+              minChunks: 3, //  minimum common number
+              priority: 5,
+              reuseExistingChunk: true
+            }
+          }
+        })
+        .runtimeChunk("single") //  分离runtime
+        .minimize(false) // 配置不压缩js
+        .end();
+    }
   },
   css: {
     loaderOptions: {
