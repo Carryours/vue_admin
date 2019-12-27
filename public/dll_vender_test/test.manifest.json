@@ -1,0 +1,11 @@
+{
+    "name": "__dll_test",
+    "content": {
+        "./test/index.js": {
+            "id": 1,
+            "buildMeta": {
+                "providedExports": true
+            }
+        }
+    }
+}

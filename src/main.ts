@@ -5,7 +5,8 @@ import router from './router'
 import '@/styles/index.styl'
 import App from './App/index'
 
-
+import test from '__dll_test'
+console.log(test)
 // import {
 //     Icon,
 //     Button,

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "dll": "node build/dll.js",
+    "dllt": "node build/dll_test.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build_nc": "vue-cli-service build --no-clean",

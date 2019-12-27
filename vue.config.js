@@ -26,6 +26,20 @@ module.exports = {
     /////开发配置//////////////////////////
     ///////////////////////////////////////////////
     if (isDev) {
+      config // 使用dll
+        .plugin("dll-reference-plugin")
+        .use(webpack.DllReferencePlugin)
+        .tap(options => {
+          options[0] = {
+            context: __dirname,
+            manifest: require(path.join(
+              __dirname,
+              `./public/dll_vender_test/test.manifest.json`
+            ))
+          };
+          return options;
+        })
+        .end();
       config.optimization.splitChunks({}).end();
     }
     //////////////////////////////////////////////////////////
@@ -50,6 +64,13 @@ module.exports = {
               `./public/dll_vender/vendor.manifest.json`
             ))
           };
+          // options[1] = {
+          //   context: __dirname,
+          //   manifest: require(path.join(
+          //     __dirname,
+          //     `./public/dll_vender_test/test.manifest.json`
+          //   ))
+          // };
           return options;
         })
         .end();
