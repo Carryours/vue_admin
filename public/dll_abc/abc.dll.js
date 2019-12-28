@@ -1,4 +1,4 @@
-var __dll_test =
+var __dll_abc =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
@@ -208,10 +208,15 @@ module.exports = __webpack_require__;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-const a = __webpack_require__.e(/* import() */ 1).then(__webpack_require__.bind(null, 2));
-console.log(a);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const a = () => __webpack_require__.e(/* import() */ 1).then(__webpack_require__.t.bind(null, 2, 7));
+const b = () => __webpack_require__.e(/* import() */ 2).then(__webpack_require__.t.bind(null, 3, 7));
+window.a = a;
+window.b = b;
+/* harmony default export */ __webpack_exports__["default"] = ("abc");
 
 
 /***/ })

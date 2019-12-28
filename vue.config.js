@@ -20,7 +20,7 @@ module.exports = {
     config.resolve.alias
       // .delete("vue$")
       .set("@", resolve("src"))
-      // .set('@a', resolve('src/ui/antd/components'))
+      .set("root", resolve(""))
       .end();
     ///////////////////////////////////////////////
     /////开发配置//////////////////////////
@@ -32,9 +32,10 @@ module.exports = {
         .tap(options => {
           options[0] = {
             context: __dirname,
+            scope: "a",
             manifest: require(path.join(
               __dirname,
-              `./public/dll_vender_test/test.manifest.json`
+              `public/dll_abc/abc.manifest.json`
             ))
           };
           return options;
@@ -54,7 +55,7 @@ module.exports = {
         .end();
       //////////////////////////
       config // 使用dll
-        .plugin("dll-reference-plugin")
+        .plugin("dll-reference-plugin1")
         .use(webpack.DllReferencePlugin)
         .tap(options => {
           options[0] = {
@@ -64,16 +65,18 @@ module.exports = {
               `./public/dll_vender/vendor.manifest.json`
             ))
           };
-          // options[1] = {
-          //   context: __dirname,
-          //   manifest: require(path.join(
-          //     __dirname,
-          //     `./public/dll_vender_test/test.manifest.json`
-          //   ))
-          // };
+          options[1] = {
+            scope: "a",
+            context: __dirname,
+            manifest: require(path.join(
+              __dirname,
+              `./public/dll_abc/abc.manifest.json`
+            ))
+          };
           return options;
         })
         .end();
+
       config
         .plugin("html")
         .tap(args => {

@@ -4,9 +4,11 @@ import router from './router'
 // import store from './store'
 import '@/styles/index.styl'
 import App from './App/index'
-
-import test from '__dll_test'
-console.log(test)
+// console.log(require('./test/a'))
+import axios from 'axios'
+// import abc from '../abc'
+// console.log(require("root/a/abc"))
+// console.log(test)
 // import {
 //     Icon,
 //     Button,

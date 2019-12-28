@@ -3,24 +3,26 @@ const path = require("path");
 const DllPlugin = require("webpack/lib/DllPlugin");
 const webpack = require("webpack");
 const fs = require("fs");
-const dllDirname = "dll_vender_test";
+const dllDirname = "dll_abc";
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 // const resolveApp = relativePath => path.resolve(__dirname, "..", relativePath);
 const config = {
   mode: "none",
+  // mode: "production",
   // 入口文件
   entry: {
-    test: [resolveApp("./test/index.js")]
-    // vue: ["vue"],
-    // 项目中用到该两个依赖库文件
-    // vendor: ["axios", "vue-router"]
+    // test: [resolveApp("abc")]
+    abc: ["./abc/index"]
+  },
+  resolve: {
+    extensions: [".js", ".jsx"]
   },
   // 输出文件
   output: {
     // 文件名称
     filename: "[name].dll.js",
-    // 将输出的文件放到dist目录下
+
     path: resolveApp("public/" + dllDirname),
 
     /*
