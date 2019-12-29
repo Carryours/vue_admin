@@ -1,4 +1,4 @@
-var __dll_abc =
+var __dll_demo =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
@@ -44,7 +44,7 @@ var __dll_abc =
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({}[chunkId]||chunkId) + ".dll.js"
+/******/ 		return __webpack_require__.p + "" + ({"1":"demo/a","2":"demo/b"}[chunkId]||chunkId) + "/index." + {"1":"0025fe1e","2":"223dd3d7"}[chunkId] + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -188,7 +188,7 @@ var __dll_abc =
 /******/ 	// on error function for async loading
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
-/******/ 	var jsonpArray = window["webpackJsonp_dll_name_"] = window["webpackJsonp_dll_name_"] || [];
+/******/ 	var jsonpArray = window["webpackJsonp_dll_demo"] = window["webpackJsonp_dll_demo"] || [];
 /******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
 /******/ 	jsonpArray.push = webpackJsonpCallback;
 /******/ 	jsonpArray = jsonpArray.slice();
@@ -212,12 +212,27 @@ module.exports = __webpack_require__;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const a = () => __webpack_require__.e(/* import() */ 1).then(__webpack_require__.t.bind(null, 2, 7));
-const b = () => __webpack_require__.e(/* import() */ 2).then(__webpack_require__.t.bind(null, 3, 7));
-window.a = a;
-window.b = b;
+const a = () => __webpack_require__.e(/* import() | demo/a */ 1).then(__webpack_require__.t.bind(null, 3, 7));
+const b = () => __webpack_require__.e(/* import() | demo/b */ 2).then(__webpack_require__.t.bind(null, 4, 7));
+
+const aa = __webpack_require__(2);
+
+const img = document.createElement("img");
+img.src = aa;
+console.log(img);
+document.body.append(img);
+setTimeout(() => {
+  console.log(a());
+  console.log(b());
+}, 1000);
 /* harmony default export */ __webpack_exports__["default"] = ("abc");
 
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "demo/img/aaa.b05668fc.png";
 
 /***/ })
 /******/ ]);

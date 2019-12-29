@@ -21,13 +21,11 @@
   </noscript>
   <div id="app"></div>
 
-  <!-- <script src="vue/vue.runtime.min.js"></script> -->
   <% htmlWebpackPlugin.options.costomScripts &&
     htmlWebpackPlugin.options.costomScripts.forEach(function(item){ if(item.src
     ){ %>
   <script type="text/javascript" src="<%= item.src %>"></script>
   <% }}) %>
-  <script src="dll_abc/abc.dll.js"></script>
   <!-- built files will be auto injected -->
 </body>
 

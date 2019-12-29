@@ -1,12 +1,38 @@
 const path = require("path");
 const webpack = require("webpack");
+const fs = require("fs");
 
-const resolve = dir => {
-  return path.join(__dirname, dir);
-};
+const resolve = dir => path.join(__dirname, dir);
+
+let mList = (() => {
+  let publicPath = resolve("public");
+  let list = [];
+  let orderMap = { vue: 1, vendor: 2 };
+  fs.readdirSync(publicPath).forEach(filename => {
+    let pathname = path.join(publicPath, filename);
+    if (fs.statSync(pathname).isDirectory()) {
+      let map = { name: filename, order: orderMap[filename] || 10 };
+      fs.readdirSync(pathname).forEach(subFilename => {
+        let subPathname = path.join(pathname, subFilename);
+        if (subFilename === "manifest.json") {
+          map.manifest = subPathname;
+          return;
+        }
+        let stat = fs.statSync(subPathname);
+        if (stat.isFile()) map.src = `${filename}/${subFilename}`;
+      });
+      list.push(map);
+    }
+  });
+  list.sort((o1, o2) => o1.order > o2.order);
+  // console.log(list);
+  return list;
+})();
 
 const isDev = process.env.NODE_ENV === "development";
 const isPro = process.env.NODE_ENV === "production";
+
+console.log("module.exports =");
 module.exports = {
   publicPath: "", // 使用相对路径
   assetsDir: "assets",
@@ -14,33 +40,19 @@ module.exports = {
   runtimeCompiler: isPro,
   lintOnSave: isDev,
   chainWebpack: config => {
-    config.plugins.delete("preload"); // TODO: need test
-    config.plugins.delete("prefetch"); // TODO: need test
+    config.plugins.delete("preload");
+    config.plugins.delete("prefetch");
 
     config.resolve.alias
       // .delete("vue$")
       .set("@", resolve("src"))
+      .set("dll", resolve("dll"))
       .set("root", resolve(""))
       .end();
     ///////////////////////////////////////////////
     /////开发配置//////////////////////////
     ///////////////////////////////////////////////
     if (isDev) {
-      config // 使用dll
-        .plugin("dll-reference-plugin")
-        .use(webpack.DllReferencePlugin)
-        .tap(options => {
-          options[0] = {
-            context: __dirname,
-            scope: "a",
-            manifest: require(path.join(
-              __dirname,
-              `public/dll_abc/abc.manifest.json`
-            ))
-          };
-          return options;
-        })
-        .end();
       config.optimization.splitChunks({}).end();
     }
     //////////////////////////////////////////////////////////
@@ -54,38 +66,27 @@ module.exports = {
         })
         .end();
       //////////////////////////
-      config // 使用dll
-        .plugin("dll-reference-plugin1")
-        .use(webpack.DllReferencePlugin)
-        .tap(options => {
-          options[0] = {
-            context: __dirname,
-            manifest: require(path.join(
-              __dirname,
-              `./public/dll_vender/vendor.manifest.json`
-            ))
-          };
-          options[1] = {
-            scope: "a",
-            context: __dirname,
-            manifest: require(path.join(
-              __dirname,
-              `./public/dll_abc/abc.manifest.json`
-            ))
-          };
-          return options;
-        })
-        .end();
+      mList.forEach(item => {
+        let manifest = item.manifest;
+        if (!manifest) return;
+        config
+          .plugin("dll-reference-plugin_" + item.name)
+          .use(webpack.DllReferencePlugin)
+          .tap(options => {
+            options[0] = {
+              // context: __dirname,
+              manifest
+            };
+            return options;
+          })
+          .end();
+      });
 
       config
         .plugin("html")
         .tap(args => {
           let arg = args[0];
-          // 自定义script标签
-          arg.costomScripts = [
-            { src: "vue/vue.runtime.min.js" },
-            { src: "dll_vender/vendor.dll.d38023ff.js" }
-          ];
+          arg.costomScripts = mList;
           // ars.meta = {
           //   // viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
           // };
@@ -93,15 +94,15 @@ module.exports = {
           return args;
         })
         .end();
-      config
-        .plugin("ScriptExtHtmlWebpackPlugin")
-        .after("html")
-        .use("script-ext-html-webpack-plugin", [
-          {
-            // `runtime` must same as runtimeChunk name. default is `runtime`
-            inline: /runtime\..*\.js$/
-          }
-        ]);
+      // config
+      //   .plugin("ScriptExtHtmlWebpackPlugin")
+      //   .after("html")
+      //   .use("script-ext-html-webpack-plugin", [
+      //     {
+      //       // `runtime` must same as runtimeChunk name. default is `runtime`
+      //       inline: /runtime\..*\.js$/
+      //     }
+      //   ]);
 
       config.optimization
         .splitChunks({

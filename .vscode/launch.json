@@ -8,8 +8,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/lib/webpack.js"
+      "name": "abc",
+      "program": "${workspaceFolder}/dll/abc/dll.js"
     }
   ]
 }

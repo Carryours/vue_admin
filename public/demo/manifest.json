@@ -1,0 +1,1 @@
+{"name":"__dll_demo","content":{"./dll/demo/index.js":{"id":1,"buildMeta":{"exportsType":"namespace","providedExports":["default"]}},"./dll/demo/images/aaa.png":{"id":2,"buildMeta":{"providedExports":true}}}}

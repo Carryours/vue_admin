@@ -1,13 +1,13 @@
 import Vue from "vue";
 
-import router from './router'
+import router from "./router";
 // import store from './store'
-import '@/styles/index.styl'
-import App from './App/index'
-// console.log(require('./test/a'))
-import axios from 'axios'
-// import abc from '../abc'
-// console.log(require("root/a/abc"))
+import "@/styles/index.styl";
+import App from "./App/index";
+
+const abc = require('../dll/demo/index.js')
+// import abc from '../abc/index.js'
+console.log(abc)
 // console.log(test)
 // import {
 //     Icon,
@@ -26,10 +26,10 @@ import axios from 'axios'
 // Vue.prototype.$warning = Modal.warning;
 // Vue.prototype.$confirm = Modal.confirm;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 window.vm = new Vue({
     router,
     // store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount("#app");

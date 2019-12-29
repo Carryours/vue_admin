@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "vendor": "node dll/vendor/build/dll.js",
+    "demo": "node dll/demo/dll.js",
     "dev": "vue-cli-service serve",
-    "dll": "node build/dll.js",
-    "dllt": "node build/dll_test.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build_nc": "vue-cli-service build --no-clean",
     "lint": "vue-cli-service lint",
     "bl": "browserslist",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "iDev": "rimraf webpack/config.dev.js && vue-cli-service inspect --mode development >> webpack/config.dev.js",
+    "iPro": "rimraf webpack/config.pro.js && vue-cli-service inspect --mode production >> webpack/config.pro.js"
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.0-alpha.11",

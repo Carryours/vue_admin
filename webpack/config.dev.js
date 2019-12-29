@@ -1,6 +1,7 @@
+module.exports =
 {
   mode: 'development',
-  context: '/github/vue_admin',
+  context: '/github/vue_admin_lerna',
   node: {
     setImmediate: false,
     process: 'mock',
@@ -11,15 +12,17 @@
     child_process: 'empty'
   },
   output: {
-    path: '/github/vue_admin/dist',
+    path: '/github/vue_admin_lerna/dist',
     filename: 'assets/js/[name].js',
     publicPath: '',
     chunkFilename: 'assets/js/[name].js'
   },
   resolve: {
     alias: {
-      '@': '/github/vue_admin/src',
-      vue$: 'vue/dist/vue.runtime.esm.js'
+      '@': '/github/vue_admin_lerna/src',
+      vue$: 'vue/dist/vue.runtime.esm.js',
+      dll: '/github/vue_admin_lerna/dll',
+      root: '/github/vue_admin_lerna'
     },
     extensions: [
       '.tsx',
@@ -33,17 +36,17 @@
     ],
     modules: [
       'node_modules',
-      '/github/vue_admin/node_modules',
-      '/github/vue_admin/node_modules/@vue/cli-service/node_modules'
+      '/github/vue_admin_lerna/node_modules',
+      '/github/vue_admin_lerna/node_modules/@vue/cli-service/node_modules'
     ]
   },
   resolveLoader: {
     modules: [
-      '/github/vue_admin/node_modules/@vue/cli-plugin-typescript/node_modules',
-      '/github/vue_admin/node_modules/@vue/cli-plugin-babel/node_modules',
+      '/github/vue_admin_lerna/node_modules/@vue/cli-plugin-typescript/node_modules',
+      '/github/vue_admin_lerna/node_modules/@vue/cli-plugin-babel/node_modules',
       'node_modules',
-      '/github/vue_admin/node_modules',
-      '/github/vue_admin/node_modules/@vue/cli-service/node_modules'
+      '/github/vue_admin_lerna/node_modules',
+      '/github/vue_admin_lerna/node_modules/@vue/cli-service/node_modules'
     ]
   },
   module: {
@@ -55,21 +58,21 @@
         use: [
           /* config.module.rule('vue').use('cache-loader') */
           {
-            loader: '/github/vue_admin/node_modules/cache-loader/dist/cjs.js',
+            loader: '/github/vue_admin_lerna/node_modules/cache-loader/dist/cjs.js',
             options: {
-              cacheDirectory: '/github/vue_admin/node_modules/.cache/vue-loader',
-              cacheIdentifier: '14705b3a'
+              cacheDirectory: '/github/vue_admin_lerna/node_modules/.cache/vue-loader',
+              cacheIdentifier: '5e6c9231'
             }
           },
           /* config.module.rule('vue').use('vue-loader') */
           {
-            loader: '/github/vue_admin/node_modules/vue-loader/lib/index.js',
+            loader: '/github/vue_admin_lerna/node_modules/vue-loader/lib/index.js',
             options: {
               compilerOptions: {
                 whitespace: 'condense'
               },
-              cacheDirectory: '/github/vue_admin/node_modules/.cache/vue-loader',
-              cacheIdentifier: '14705b3a'
+              cacheDirectory: '/github/vue_admin_lerna/node_modules/.cache/vue-loader',
+              cacheIdentifier: '5e6c9231'
             }
           }
         ]
@@ -80,7 +83,7 @@
         use: [
           /* config.module.rule('images').use('url-loader') */
           {
-            loader: '/github/vue_admin/node_modules/url-loader/dist/cjs.js',
+            loader: '/github/vue_admin_lerna/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 4096,
               fallback: {
@@ -99,7 +102,7 @@
         use: [
           /* config.module.rule('svg').use('file-loader') */
           {
-            loader: '/github/vue_admin/node_modules/file-loader/dist/cjs.js',
+            loader: '/github/vue_admin_lerna/node_modules/file-loader/dist/cjs.js',
             options: {
               name: 'assets/img/[name].[hash:8].[ext]'
             }
@@ -112,7 +115,7 @@
         use: [
           /* config.module.rule('media').use('url-loader') */
           {
-            loader: '/github/vue_admin/node_modules/url-loader/dist/cjs.js',
+            loader: '/github/vue_admin_lerna/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 4096,
               fallback: {
@@ -131,7 +134,7 @@
         use: [
           /* config.module.rule('fonts').use('url-loader') */
           {
-            loader: '/github/vue_admin/node_modules/url-loader/dist/cjs.js',
+            loader: '/github/vue_admin_lerna/node_modules/url-loader/dist/cjs.js',
             options: {
               limit: 4096,
               fallback: {
@@ -183,7 +186,7 @@
             use: [
               /* config.module.rule('css').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -191,7 +194,7 @@
               },
               /* config.module.rule('css').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -202,7 +205,7 @@
               },
               /* config.module.rule('css').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -218,7 +221,7 @@
             use: [
               /* config.module.rule('css').oneOf('vue').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -226,7 +229,7 @@
               },
               /* config.module.rule('css').oneOf('vue').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -234,7 +237,7 @@
               },
               /* config.module.rule('css').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -250,7 +253,7 @@
             use: [
               /* config.module.rule('css').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -258,7 +261,7 @@
               },
               /* config.module.rule('css').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -269,7 +272,7 @@
               },
               /* config.module.rule('css').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -284,7 +287,7 @@
             use: [
               /* config.module.rule('css').oneOf('normal').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -292,7 +295,7 @@
               },
               /* config.module.rule('css').oneOf('normal').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -300,7 +303,7 @@
               },
               /* config.module.rule('css').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -322,7 +325,7 @@
             use: [
               /* config.module.rule('postcss').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -330,7 +333,7 @@
               },
               /* config.module.rule('postcss').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -341,7 +344,7 @@
               },
               /* config.module.rule('postcss').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -357,7 +360,7 @@
             use: [
               /* config.module.rule('postcss').oneOf('vue').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -365,7 +368,7 @@
               },
               /* config.module.rule('postcss').oneOf('vue').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -373,7 +376,7 @@
               },
               /* config.module.rule('postcss').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -389,7 +392,7 @@
             use: [
               /* config.module.rule('postcss').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -397,7 +400,7 @@
               },
               /* config.module.rule('postcss').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -408,7 +411,7 @@
               },
               /* config.module.rule('postcss').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -423,7 +426,7 @@
             use: [
               /* config.module.rule('postcss').oneOf('normal').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -431,7 +434,7 @@
               },
               /* config.module.rule('postcss').oneOf('normal').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -439,7 +442,7 @@
               },
               /* config.module.rule('postcss').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -461,7 +464,7 @@
             use: [
               /* config.module.rule('scss').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -469,7 +472,7 @@
               },
               /* config.module.rule('scss').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -480,7 +483,7 @@
               },
               /* config.module.rule('scss').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -503,7 +506,7 @@
             use: [
               /* config.module.rule('scss').oneOf('vue').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -511,7 +514,7 @@
               },
               /* config.module.rule('scss').oneOf('vue').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -519,7 +522,7 @@
               },
               /* config.module.rule('scss').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -542,7 +545,7 @@
             use: [
               /* config.module.rule('scss').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -550,7 +553,7 @@
               },
               /* config.module.rule('scss').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -561,7 +564,7 @@
               },
               /* config.module.rule('scss').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -583,7 +586,7 @@
             use: [
               /* config.module.rule('scss').oneOf('normal').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -591,7 +594,7 @@
               },
               /* config.module.rule('scss').oneOf('normal').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -599,7 +602,7 @@
               },
               /* config.module.rule('scss').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -628,7 +631,7 @@
             use: [
               /* config.module.rule('sass').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -636,7 +639,7 @@
               },
               /* config.module.rule('sass').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -647,7 +650,7 @@
               },
               /* config.module.rule('sass').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -673,7 +676,7 @@
             use: [
               /* config.module.rule('sass').oneOf('vue').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -681,7 +684,7 @@
               },
               /* config.module.rule('sass').oneOf('vue').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -689,7 +692,7 @@
               },
               /* config.module.rule('sass').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -715,7 +718,7 @@
             use: [
               /* config.module.rule('sass').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -723,7 +726,7 @@
               },
               /* config.module.rule('sass').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -734,7 +737,7 @@
               },
               /* config.module.rule('sass').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -759,7 +762,7 @@
             use: [
               /* config.module.rule('sass').oneOf('normal').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -767,7 +770,7 @@
               },
               /* config.module.rule('sass').oneOf('normal').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -775,7 +778,7 @@
               },
               /* config.module.rule('sass').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -807,7 +810,7 @@
             use: [
               /* config.module.rule('less').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -815,7 +818,7 @@
               },
               /* config.module.rule('less').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -826,7 +829,7 @@
               },
               /* config.module.rule('less').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -836,7 +839,7 @@
               },
               /* config.module.rule('less').oneOf('vue-modules').use('less-loader') */
               {
-                loader: '/github/vue_admin/node_modules/less-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/less-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   modifyVars: {
@@ -854,7 +857,7 @@
             use: [
               /* config.module.rule('less').oneOf('vue').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -862,7 +865,7 @@
               },
               /* config.module.rule('less').oneOf('vue').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -870,7 +873,7 @@
               },
               /* config.module.rule('less').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -880,7 +883,7 @@
               },
               /* config.module.rule('less').oneOf('vue').use('less-loader') */
               {
-                loader: '/github/vue_admin/node_modules/less-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/less-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   modifyVars: {
@@ -898,7 +901,7 @@
             use: [
               /* config.module.rule('less').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -906,7 +909,7 @@
               },
               /* config.module.rule('less').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -917,7 +920,7 @@
               },
               /* config.module.rule('less').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -927,7 +930,7 @@
               },
               /* config.module.rule('less').oneOf('normal-modules').use('less-loader') */
               {
-                loader: '/github/vue_admin/node_modules/less-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/less-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   modifyVars: {
@@ -944,7 +947,7 @@
             use: [
               /* config.module.rule('less').oneOf('normal').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -952,7 +955,7 @@
               },
               /* config.module.rule('less').oneOf('normal').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -960,7 +963,7 @@
               },
               /* config.module.rule('less').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -970,7 +973,7 @@
               },
               /* config.module.rule('less').oneOf('normal').use('less-loader') */
               {
-                loader: '/github/vue_admin/node_modules/less-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/less-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   modifyVars: {
@@ -994,7 +997,7 @@
             use: [
               /* config.module.rule('stylus').oneOf('vue-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -1002,7 +1005,7 @@
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -1013,7 +1016,7 @@
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -1023,12 +1026,12 @@
               },
               /* config.module.rule('stylus').oneOf('vue-modules').use('stylus-loader') */
               {
-                loader: '/github/vue_admin/node_modules/stylus-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/stylus-loader/index.js',
                 options: {
                   sourceMap: false,
                   preferPathResolver: 'webpack',
                   'import': [
-                    '/github/vue_admin/src/styles/variable/index.styl'
+                    '/github/vue_admin_lerna/src/styles/variable/index.styl'
                   ]
                 }
               }
@@ -1040,7 +1043,7 @@
             use: [
               /* config.module.rule('stylus').oneOf('vue').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -1048,7 +1051,7 @@
               },
               /* config.module.rule('stylus').oneOf('vue').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -1056,7 +1059,7 @@
               },
               /* config.module.rule('stylus').oneOf('vue').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -1066,12 +1069,12 @@
               },
               /* config.module.rule('stylus').oneOf('vue').use('stylus-loader') */
               {
-                loader: '/github/vue_admin/node_modules/stylus-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/stylus-loader/index.js',
                 options: {
                   sourceMap: false,
                   preferPathResolver: 'webpack',
                   'import': [
-                    '/github/vue_admin/src/styles/variable/index.styl'
+                    '/github/vue_admin_lerna/src/styles/variable/index.styl'
                   ]
                 }
               }
@@ -1083,7 +1086,7 @@
             use: [
               /* config.module.rule('stylus').oneOf('normal-modules').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -1091,7 +1094,7 @@
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2,
@@ -1102,7 +1105,7 @@
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -1112,12 +1115,12 @@
               },
               /* config.module.rule('stylus').oneOf('normal-modules').use('stylus-loader') */
               {
-                loader: '/github/vue_admin/node_modules/stylus-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/stylus-loader/index.js',
                 options: {
                   sourceMap: false,
                   preferPathResolver: 'webpack',
                   'import': [
-                    '/github/vue_admin/src/styles/variable/index.styl'
+                    '/github/vue_admin_lerna/src/styles/variable/index.styl'
                   ]
                 }
               }
@@ -1128,7 +1131,7 @@
             use: [
               /* config.module.rule('stylus').oneOf('normal').use('vue-style-loader') */
               {
-                loader: '/github/vue_admin/node_modules/vue-style-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/vue-style-loader/index.js',
                 options: {
                   sourceMap: false,
                   shadowMode: false
@@ -1136,7 +1139,7 @@
               },
               /* config.module.rule('stylus').oneOf('normal').use('css-loader') */
               {
-                loader: '/github/vue_admin/node_modules/css-loader/dist/cjs.js',
+                loader: '/github/vue_admin_lerna/node_modules/css-loader/dist/cjs.js',
                 options: {
                   sourceMap: false,
                   importLoaders: 2
@@ -1144,7 +1147,7 @@
               },
               /* config.module.rule('stylus').oneOf('normal').use('postcss-loader') */
               {
-                loader: '/github/vue_admin/node_modules/postcss-loader/src/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/postcss-loader/src/index.js',
                 options: {
                   sourceMap: false,
                   plugins: [
@@ -1154,12 +1157,12 @@
               },
               /* config.module.rule('stylus').oneOf('normal').use('stylus-loader') */
               {
-                loader: '/github/vue_admin/node_modules/stylus-loader/index.js',
+                loader: '/github/vue_admin_lerna/node_modules/stylus-loader/index.js',
                 options: {
                   sourceMap: false,
                   preferPathResolver: 'webpack',
                   'import': [
-                    '/github/vue_admin/src/styles/variable/index.styl'
+                    '/github/vue_admin_lerna/src/styles/variable/index.styl'
                   ]
                 }
               }
@@ -1176,15 +1179,15 @@
         use: [
           /* config.module.rule('js').use('cache-loader') */
           {
-            loader: '/github/vue_admin/node_modules/cache-loader/dist/cjs.js',
+            loader: '/github/vue_admin_lerna/node_modules/cache-loader/dist/cjs.js',
             options: {
-              cacheDirectory: '/github/vue_admin/node_modules/.cache/babel-loader',
-              cacheIdentifier: '88202062'
+              cacheDirectory: '/github/vue_admin_lerna/node_modules/.cache/babel-loader',
+              cacheIdentifier: '477b1a77'
             }
           },
           /* config.module.rule('js').use('babel-loader') */
           {
-            loader: '/github/vue_admin/node_modules/babel-loader/lib/index.js'
+            loader: '/github/vue_admin_lerna/node_modules/babel-loader/lib/index.js'
           }
         ]
       },
@@ -1194,12 +1197,12 @@
         test: /\.(vue|(j|t)sx?)$/,
         exclude: [
           /node_modules/,
-          '/github/vue_admin/node_modules/@vue/cli-service/lib'
+          '/github/vue_admin_lerna/node_modules/@vue/cli-service/lib'
         ],
         use: [
           /* config.module.rule('eslint').use('eslint-loader') */
           {
-            loader: '/github/vue_admin/node_modules/eslint-loader/index.js',
+            loader: '/github/vue_admin_lerna/node_modules/eslint-loader/index.js',
             options: {
               extensions: [
                 '.js',
@@ -1209,10 +1212,10 @@
                 '.tsx'
               ],
               cache: true,
-              cacheIdentifier: '78dec93e',
+              cacheIdentifier: '0d43be4d',
               emitWarning: true,
               emitError: false,
-              eslintPath: '/github/vue_admin/node_modules/eslint',
+              eslintPath: '/github/vue_admin_lerna/node_modules/eslint',
               formatter: function () { /* omitted long function */ }
             }
           }
@@ -1224,19 +1227,19 @@
         use: [
           /* config.module.rule('ts').use('cache-loader') */
           {
-            loader: '/github/vue_admin/node_modules/cache-loader/dist/cjs.js',
+            loader: '/github/vue_admin_lerna/node_modules/cache-loader/dist/cjs.js',
             options: {
-              cacheDirectory: '/github/vue_admin/node_modules/.cache/ts-loader',
-              cacheIdentifier: '22347f76'
+              cacheDirectory: '/github/vue_admin_lerna/node_modules/.cache/ts-loader',
+              cacheIdentifier: '3c49654f'
             }
           },
           /* config.module.rule('ts').use('babel-loader') */
           {
-            loader: '/github/vue_admin/node_modules/babel-loader/lib/index.js'
+            loader: '/github/vue_admin_lerna/node_modules/babel-loader/lib/index.js'
           },
           /* config.module.rule('ts').use('ts-loader') */
           {
-            loader: '/github/vue_admin/node_modules/ts-loader/index.js',
+            loader: '/github/vue_admin_lerna/node_modules/ts-loader/index.js',
             options: {
               transpileOnly: true,
               appendTsSuffixTo: [
@@ -1253,19 +1256,19 @@
         use: [
           /* config.module.rule('tsx').use('cache-loader') */
           {
-            loader: '/github/vue_admin/node_modules/cache-loader/dist/cjs.js',
+            loader: '/github/vue_admin_lerna/node_modules/cache-loader/dist/cjs.js',
             options: {
-              cacheDirectory: '/github/vue_admin/node_modules/.cache/ts-loader',
-              cacheIdentifier: '22347f76'
+              cacheDirectory: '/github/vue_admin_lerna/node_modules/.cache/ts-loader',
+              cacheIdentifier: '3c49654f'
             }
           },
           /* config.module.rule('tsx').use('babel-loader') */
           {
-            loader: '/github/vue_admin/node_modules/babel-loader/lib/index.js'
+            loader: '/github/vue_admin_lerna/node_modules/babel-loader/lib/index.js'
           },
           /* config.module.rule('tsx').use('ts-loader') */
           {
-            loader: '/github/vue_admin/node_modules/ts-loader/index.js',
+            loader: '/github/vue_admin_lerna/node_modules/ts-loader/index.js',
             options: {
               transpileOnly: true,
               happyPackMode: false,
@@ -1350,33 +1353,35 @@
     new HtmlWebpackPlugin(
       {
         templateParameters: function () { /* omitted long function */ },
-        template: '/github/vue_admin/public/index.html'
-      }
-    ),
-    /* config.plugin('preload') */
-    new PreloadPlugin(
-      {
-        rel: 'preload',
-        include: 'initial',
-        fileBlacklist: [
-          /\.map$/,
-          /hot-update\.js$/
-        ]
-      }
-    ),
-    /* config.plugin('prefetch') */
-    new PreloadPlugin(
-      {
-        rel: 'prefetch',
-        include: 'asyncChunks'
+        template: '/github/vue_admin_lerna/public/index.html',
+        costomScripts: [
+          {
+            name: 'vue',
+            order: 1,
+            src: 'vue/vue.runtime.min.js'
+          },
+          {
+            name: 'vendor',
+            order: 2,
+            src: 'vendor/index.a10eff63.js',
+            manifest: '/github/vue_admin_lerna/public/vendor/manifest.json'
+          },
+          {
+            name: 'demo',
+            order: 10,
+            src: 'demo/index.1e340bff.js',
+            manifest: '/github/vue_admin_lerna/public/demo/manifest.json'
+          }
+        ],
+        minify: false
       }
     ),
     /* config.plugin('copy') */
     new CopyPlugin(
       [
         {
-          from: '/github/vue_admin/public',
-          to: '/github/vue_admin/dist',
+          from: '/github/vue_admin_lerna/public',
+          to: '/github/vue_admin_lerna/dist',
           toType: 'dir',
           ignore: [
             '.DS_Store',
@@ -1395,6 +1400,20 @@
         tslint: false,
         formatter: 'codeframe',
         checkSyntacticErrors: false
+      }
+    ),
+    /* config.plugin('dll-reference-plugin_vendor') */
+    new DllReferencePlugin(
+      {
+        context: '/github/vue_admin_lerna',
+        manifest: '/github/vue_admin_lerna/public/vendor/manifest.json'
+      }
+    ),
+    /* config.plugin('dll-reference-plugin_demo') */
+    new DllReferencePlugin(
+      {
+        context: '/github/vue_admin_lerna',
+        manifest: '/github/vue_admin_lerna/public/demo/manifest.json'
       }
     )
   ],
